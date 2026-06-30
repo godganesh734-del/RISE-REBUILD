@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <title>RISE & REBUILD · Elite Transformation</title>
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts for premium typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0A0A0A;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #E5E7EB;
+    }
+    .font-display { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em; }
+
+    /* Glassmorphic nav */
+    .glass-nav {
+      background: rgba(10, 10, 10, 0.75);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-bottom: 1px solid rgba(245, 158, 11, 0.12);
+    }
+    /* Amber glow */
+    .amber-glow {
+      box-shadow: 0 0 28px rgba(245, 158, 11, 0.35), 0 0 60px rgba(245, 158, 11, 0.10);
+    }
+    .amber-glow-strong {
+      box-shadow: 0 0 40px rgba(245, 158, 11, 0.5), 0 0 80px rgba(245, 158, 11, 0.15);
+    }
+    .amber-border {
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.10);
+    }
+    .amber-text {
+      text-shadow: 0 0 18px rgba(245, 158, 11, 0.5), 0 0 40px rgba(245, 158, 11, 0.15);
+    }
+
+    /* Buttons */
+    .btn-amber {
+      background: linear-gradient(135deg, #F59E0B, #D97706);
+      color: #0A0A0A;
+      font-weight: 800;
+      transition: all 0.25s ease;
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.4);
+    }
+    .btn-amber:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 50px rgba(245, 158, 11, 0.7);
+      filter: brightness(1.08);
+    }
+    .btn-outline-amber {
+      border: 1.5px solid #F59E0B;
+      color: #F59E0B;
+      background: transparent;
+      transition: all 0.25s ease;
+    }
+    .btn-outline-amber:hover {
+      background: rgba(245, 158, 11, 0.08);
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.15);
+    }
+
+    /* Cards */
+    .card-pillar {
+      background: rgba(17, 17, 17, 0.7);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: all 0.35s ease;
+    }
+    .card-pillar:hover {
+      border-color: rgba(245, 158, 11, 0.5);
+      box-shadow: 0 0 40px rgba(245, 158, 11, 0.15);
+      transform: translateY(-6px);
+    }
+    .pricing-card {
+      background: rgba(17, 17, 17, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: all 0.3s ease;
+    }
+    .pricing-card:hover {
+      border-color: #F59E0B;
+      box-shadow: 0 0 45px rgba(245, 158, 11, 0.10);
+      transform: translateY(-4px);
+    }
+    .coach-badge {
+      background: linear-gradient(135deg, #F59E0B, #D97706);
+      color: #0A0A0A;
+      font-weight: 800;
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+    }
+
+    /* Hero overlay */
+    .hero-overlay {
+      background:
+        radial-gradient(ellipse at 60% 30%, rgba(245,158,11,0.12), transparent 55%),
+        linear-gradient(180deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.85) 70%, #0A0A0A 100%);
+    }
+
+    /* WhatsApp float pulse */
+    @keyframes pulse-wa {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5), 0 8px 24px rgba(37,211,102,0.25); }
+      50% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0), 0 10px 32px rgba(37,211,102,0.4); }
+    }
+    .wa-float {
+      animation: pulse-wa 2.4s infinite;
+    }
+
+    /* Map container */
+    .map-container iframe {
+      border-radius: 16px;
+      border: 1.5px solid rgba(245, 158, 11, 0.3);
+      box-shadow: 0 0 40px rgba(245, 158, 11, 0.06);
+      width: 100%;
+      height: 200px;
+    }
+    @media (min-width: 768px) {
+      .map-container iframe { height: 260px; }
+    }
+
+    .icon-md { width: 28px; height: 28px; stroke-width: 1.8; }
+    .text-amber { color: #F59E0B; }
+    .border-amber { border-color: #F59E0B; }
+    .bg-amber { background: #F59E0B; }
+  </style>
+</head>
+<body>
+
+<!-- ========== FLOATING WHATSAPP WIDGET ========== -->
+<a href="https://wa.me/917980733974?text=Hi%20Rise%20%26%20Rebuild,%20I%20visited%20your%20website%20and%20want%20to%20book%20a%20Free%20Trial%20Session!"
+   target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
+   class="wa-float fixed bottom-6 right-6 z-[999] w-16 h-16 rounded-full flex items-center justify-center"
+   style="background: linear-gradient(135deg, #25D366, #128C7E); box-shadow: 0 8px 30px rgba(37,211,102,0.4);">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-8 h-8">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- ========== STICKY NAVBAR ========== -->
+<header class="fixed top-0 left-0 w-full z-50 glass-nav">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16 md:h-20">
+      <div class="flex items-center">
+        <span class="text-xl md:text-2xl font-black tracking-wider text-[#F59E0B] amber-text">
+          RISE &amp; REBUILD
+        </span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+        <a href="#pillars" class="hover:text-[#F59E0B] transition">Pillars</a>
+        <a href="#pricing" class="hover:text-[#F59E0B] transition">Tiers</a>
+        <a href="#location" class="hover:text-[#F59E0B] transition">Location</a>
+        <a href="tel:07980733974" class="hover:text-[#F59E0B] transition">Contact</a>
+        <a href="https://wa.me/917980733974?text=Hi%20Rise%20%26%20Rebuild,%20I%20want%20to%20claim%20my%20Free%20Trial%20Transformation%20Pass!" target="_blank"
+           class="btn-amber px-5 py-2.5 rounded-full text-sm font-bold shadow-lg transition">Start Your Journey</a>
+      </nav>
+      <div class="md:hidden flex items-center">
+        <a href="https://wa.me/917980733974?text=Hi%20Rise%20%26%20Rebuild,%20I%20want%20to%20claim%20my%20Free%20Trial%20Transformation%20Pass!" target="_blank"
+           class="btn-amber px-4 py-2 rounded-full text-xs font-bold shadow-lg">Journey</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ========== HERO SECTION ========== -->
+<section class="relative min-h-[88vh] flex items-center pt-16 md:pt-20 overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1920" alt="Elite fitness training" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 hero-overlay"></div>
+  </div>
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+    <div class="max-w-3xl">
+      <div class="inline-block bg-[#F59E0B]/10 backdrop-blur-sm border border-[#F59E0B]/40 rounded-full px-5 py-1.5 mb-5">
+        <span class="text-[#F59E0B] text-xs font-semibold tracking-widest uppercase">⚡ rishra's elite transformation academy</span>
+      </div>
+      <h1 class="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] text-white drop-shadow-2xl">
+        <span class="text-[#F59E0B] amber-text">RISE</span> ABOVE YOUR EXCUSES. <br/>
+        <span class="text-white">REBUILD</span> <span class="text-[#F59E0B] amber-text">YOUR LEGACY.</span>
+      </h1>
+      <div class="mt-6 inline-flex items-center gap-4 px-6 py-4 rounded-2xl border border-[#F59E0B]/40 amber-glow" style="background: rgba(10,10,10,0.6); backdrop-filter: blur(8px);">
+        <span class="text-3xl md:text-4xl text-[#F59E0B]">★</span>
+        <div>
+          <span class="text-white font-extrabold text-2xl md:text-3xl tracking-tight">5.0</span>
+          <span class="text-[#F59E0B] font-bold text-sm md:text-base ml-2">/ 5.0</span>
+          <div class="flex items-center gap-1 mt-0.5">
+            <span class="text-[#F59E0B] text-sm">★★★★★</span>
+            <span class="text-gray-300 text-xs ml-1">Premium Google Rating</span>
+          </div>
+        </div>
+      </div>
+      <p class="text-gray-300 text-base md:text-lg max-w-xl mt-6 leading-relaxed drop-shadow">
+        Step into the <span class="text-white font-bold">RISE & REBUILD</span> arena — where elite coaching, precision equipment, and a relentless community forge champions.
+      </p>
+      <div class="flex flex-wrap items-center gap-4 mt-8">
+        <a href="https://wa.me/917980733974?text=Hi%20Rise%20%26%20Rebuild,%20I%20want%20to%20claim%20my%20Free%20Trial%20Transformation%20Pass!" target="_blank"
+           class="btn-amber px-8 py-4 rounded-full text-base font-bold shadow-2xl flex items-center gap-2 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
+          </svg>
+          Claim Free Rebuild Pass
+        </a>
+        <a href="#pillars" class="text-gray-300 hover:text-[#F59E0B] flex items-center gap-1 transition text-sm font-medium">
+          Explore <span class="text-[#F59E0B]">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FLAWLESS 5.0★ TRUST ROW ========== -->
+<div class="bg-[#0F0F0F] border-y border-[#F59E0B]/15 py-5 px-4">
+  <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-6 text-sm">
+    <span class="flex items-center gap-2 text-[#F59E0B] font-bold"><span class="text-2xl">★</span> 5.0/5 Perfect Google Rating</span>
+    <span class="hidden sm:inline text-gray-600">|</span>
+    <span class="text-white font-medium"><span class="text-[#F59E0B]">Rishra's Ultimate Hub</span> for Elite Strength, Conditioning &amp; Lifestyle Transformation</span>
+  </div>
+</div>
+
+<!-- ========== REBUILD PILLARS GRID ========== -->
+<section id="pillars" class="py-16 md:py-24 px-4 bg-[#0A0A0A]">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <span class="text-[#F59E0B] text-sm font-semibold tracking-widest uppercase">rebuild pillars</span>
+      <h2 class="font-display text-3xl md:text-5xl text-white mt-2">Elite <span class="text-[#F59E0B] amber-text">Foundations</span></h2>
+      <div class="w-20 h-1 bg-[#F59E0B] mx-auto mt-3 rounded-full"></div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      <!-- 1 -->
+      <div class="card-pillar p-6 rounded-2xl text-center">
+        <div class="flex justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#F59E0B" class="icon-md">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-white">Precision Strength Floor</h3>
+        <p class="text-gray-400 text-sm mt-1">Premium racks, calibrated plates &amp; compound stations.</p>
+      </div>
+      <!-- 2 -->
+      <div class="card-pillar p-6 rounded-2xl text-center">
+        <div class="flex justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#F59E0B" class="icon-md">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-white">High-Performance Cardio</h3>
+        <p class="text-gray-400 text-sm mt-1">Elite treadmills, assault bikes &amp; precision rowers.</p>
+      </div>
+      <!-- 3 -->
+      <div class="card-pillar p-6 rounded-2xl text-center">
+        <div class="flex justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#F59E0B" class="icon-md">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 17l6-6 4 4 8-8" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 7h7v7" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-white">Elite Body Transformation</h3>
+        <p class="text-gray-400 text-sm mt-1">Custom nutrition &amp; body composition tracking.</p>
+      </div>
+      <!-- 4 -->
+      <div class="card-pillar p-6 rounded-2xl text-center">
+        <div class="flex justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#F59E0B" class="icon-md">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-white">Athletic Functional HIIT</h3>
+        <p class="text-gray-400 text-sm mt-1">Turf, ropes, sleds &amp; metabolic conditioning.</p>
+      </div>
+      <!-- 5 -->
+      <div class="card-pillar p-6 rounded-2xl text-center">
+        <div class="flex justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#F59E0B" class="icon-md">
+            <circle cx="12" cy="8" r="4" stroke-width="2" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-white">Expert Certified Coaches</h3>
+        <p class="text-gray-400 text-sm mt-1">Elite trainers, form analysis &amp; mindset coaching.</p>
+      </div>
+      <!-- 6 -->
+      <div class="card-pillar p-6 rounded-2xl text-center">
+        <div class="flex justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#F59E0B" class="icon-md">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-white">24/7 Arena Access</h3>
+        <p class="text-gray-400 text-sm mt-1">Train anytime, premium security &amp; recovery.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRICING CARDS ========== -->
+<section id="pricing" class="py-16 md:py-24 px-4 bg-[#0F0F0F]">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <span class="text-[#F59E0B] text-sm font-semibold tracking-widest uppercase">elite tier pricing</span>
+      <h2 class="font-display text-3xl md:text-5xl text-white mt-2">Choose Your <span class="text-[#F59E0B] amber-text">Tier</span></h2>
+      <div class="w-20 h-1 bg-[#F59E0B] mx-auto mt-3 rounded-full"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      <!-- Rise -->
+      <div class="pricing-card p-6 rounded-2xl flex flex-col items-start">
+        <span class="text-[#F59E0B] text-sm font-bold tracking-widest">RISE TIER</span>
+        <p class="text-3xl font-black text-white mt-1">₹999<span class="text-sm font-light text-gray-400">/mo</span></p>
+        <ul class="mt-4 space-y-2 text-gray-300 text-sm">
+          <li class="flex items-center gap-2"><span class="text-[#F59E0B]">✓</span> Full strength &amp; cardio</li>
+          <li class="flex items-center gap-2"><span class="text-[#F59E0B]">✓</span> Locker facility</li>
+          <li class="flex items-center gap-2"><span class="text-[#F59E0B]">✓</span> Group HIIT sessions</li>
+        </ul>
+        <a href="https://wa.me/917980733974?text=Hi%20Rise%20%26%20Rebuild,%20I%20am%20interested%20in%20joining%20your%20Elite%20Rebuild%20Plans." target="_blank"
+           class="mt-6 w-full btn-outline-amber py-3 rounded-full text-center font-bold text-sm transition">Join Now</a>
+      </div>
+      <!-- Rebuild (Coaches' Choice) -->
+      <div class="pricing-card p-6 rounded-2xl flex flex-col items-start relative border-2 border-[#F59E0B] amber-glow">
+        <span class="coach-badge absolute -top-3 right-4 text-xs px-4 py-1 rounded-full shadow-lg">★ COACHES' CHOICE</span>
+        <span class="text-[#F59E0B] text-sm font-bold tracking-widest">REBUILD TIER</span>
+        <p class="text-3xl font-black text-white mt-1">₹1,899<span class="text-sm font-light text-gray-400">/mo</span></p>
+        <ul class="mt-4 space-y-2 text-gray-300 text-sm">
+          <li class="flex items-center gap-2"><span class="text-[#F59E0B]">✓</span> All Rise benefits</li>
+          <li class="flex items-center gap-2"><span class="text-[#F59E0B]">✓</span> 2 PT sessions / mo</li>
+          <li class="flex items-center gap-2"><span class="text-[#F59E0B]">✓</span> Functional training zone</li>
+          <li class="flex items-center gap-2"><span class="text-[#F59E0B]">✓</span> Nutrition consultation</li>
+        </ul>
+        <a href="https://wa.me/917980733974?text=Hi%20Rise%20%26%20Rebuild,%20I%20am%20interested%20in%20joining%20your%20Elite%20Rebuild%20Plans." target="_blank"
+           class="mt-6 w-full btn-amber py-3 rounded-full text-center font-bold text-sm transition">Join Now</a>
+      </div>
+      <!-- Legacy Alpha -->
+      <div class="pricing-card p-6 rounded-2xl flex flex-col items-start">
+        <span class="text-[#F59E0B] text-sm font-bold tracking-widest">LEGACY ALPHA</span>
+        <p class="text-3xl font-black text-white mt-1">₹2,999<span class="text-sm font-light text-gray-400">/mo</span></p>
+        <ul class="mt-4 space-y-2 text-gray-300 text-sm">
+          <li class="flex items-center gap-2"><span class="text-[#F59E0B]">✓</span> All Rebuild benefits</li>
+          <li class="flex items-center gap-2"><span class="text-[#F59E0B]">✓</span> Unlimited PT &amp; recovery</li>
+          <li class="flex items-center gap-2"><span class="text-[#F59E0B]">✓</span> Guest passes (2/mo)</li>
+          <li class="flex items-center gap-2"><span class="text-[#F59E0B]">✓</span> Priority scheduling</li>
+        </ul>
+        <a href="https://wa.me/917980733974?text=Hi%20Rise%20%26%20Rebuild,%20I%20am%20interested%20in%20joining%20your%20Elite%20Rebuild%20Plans." target="_blank"
+           class="mt-6 w-full btn-outline-amber py-3 rounded-full text-center font-bold text-sm transition">Join Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LOCATION MAP ========== -->
+<section id="location" class="py-16 md:py-20 px-4 bg-[#0A0A0A] border-t border-[#F59E0B]/10">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-8">
+      <span class="text-[#F59E0B] text-sm font-semibold tracking-widest uppercase">📍 locate the academy</span>
+      <h2 class="font-display text-3xl md:text-5xl text-white mt-1">On <span class="text-[#F59E0B] amber-text">NS Road</span></h2>
+      <div class="w-20 h-1 bg-[#F59E0B] mx-auto mt-3 rounded-full"></div>
+      <p class="text-gray-400 text-sm mt-3 max-w-xl mx-auto">
+        NS Rd, Morepukur, Kali Tala, Bangur Park, Rishra, West Bengal 712248
+      </p>
+    </div>
+    <div class="map-container max-w-4xl mx-auto">
+      <iframe
+        src="https://www.google.com/maps?q=NS+Rd,+Bangur+Park,+Rishra,+West+Bengal+712248&output=embed"
+        width="100%" height="200" style="border:0; border-radius: 16px; border: 1.5px solid rgba(245,158,11,0.3); box-shadow: 0 0 40px rgba(245,158,11,0.06);"
+        allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer id="footer" class="bg-[#080808] border-t border-[#F59E0B]/15 px-4 py-12 md:py-16">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div>
+      <h4 class="text-2xl md:text-3xl font-black tracking-wider text-[#F59E0B] amber-text">RISE &amp; REBUILD</h4>
+      <div class="mt-4 text-gray-300 text-sm leading-relaxed space-y-2">
+        <p class="flex items-start gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#F59E0B" class="w-5 h-5 shrink-0 mt-0.5">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span>NS Rd, Morepukur, Kali Tala,<br> Bangur Park, Rishra, West Bengal 712248</span>
+        </p>
+        <p class="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#F59E0B" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          <a href="tel:07980733974" class="hover:text-[#F59E0B] transition">07980733974</a>
+          <span class="text-gray-500 mx-1">·</span>
+          <a href="https://wa.me/917980733974" target="_blank" class="text-[#F59E0B] hover:underline">WhatsApp</a>
+        </p>
+        <p class="flex items-center gap-2 text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#F59E0B" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>Mon–Sat: 5:30am – 10:30pm · Sun: 7am – 2pm</span>
+        </p>
+      </div>
+      <a href="tel:07980733974" class="inline-flex items-center gap-2 mt-4 btn-amber px-6 py-3 rounded-full text-sm font-bold">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+        </svg>
+        Call Now
+      </a>
+      <a href="https://maps.google.com/maps?q=NS+Rd,+Bangur+Park,+Rishra,+West+Bengal" target="_blank" class="inline-flex items-center gap-1 mt-3 text-[#F59E0B] text-xs hover:underline ml-1">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+        </svg>
+        Open in Maps
+      </a>
+    </div>
+    <div class="flex flex-col justify-between">
+      <div class="bg-[#0F0F0F] p-5 rounded-2xl border border-[#F59E0B]/20">
+        <div class="flex items-center gap-3">
+          <span class="text-3xl text-[#F59E0B]">★</span>
+          <div>
+            <p class="text-white font-bold text-lg">5.0/5 Elite Rating</p>
+            <div class="flex items-center gap-1 text-[#F59E0B] text-sm">
+              <span>★★★★★</span> <span class="text-gray-400 text-xs">Premium Academy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="text-gray-500 text-xs mt-6 md:mt-0 text-right">&copy; 2026 RISE &amp; REBUILD. Rise above.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
